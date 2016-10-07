@@ -27,9 +27,17 @@ int main(){
     // Constants for discount amounts
     const double GASREDUCTION = 0.07, CARWASHDISCOUNT = 0.15;
 
-    double gallonsPurchased, gasPrice, gasCost, totalCost;
-    double washCost = 0.0;
+    double gallonsPurchased;     // The amount of gallons purchased
+    double gasPrice;             // The price of the gas per gallon
+    double gasCost;              // The total cost of the gas
+    double totalCost;            // The total cost of the transaction
+    double washCost = 0.0;       // The cost of the car wash
+                                 // Iniialize to 0 in case they don't buy one
+
+    // Chars for reading in input                              
     char gasType, input;
+
+    // Boolean flag to determine if they get a platinum discount 
     bool platinum = false;
 
     // Say hi and prompt for gas type
@@ -44,14 +52,17 @@ int main(){
     cin >> gasType; gasType = toupper(gasType);
 
     // Set gas price according to the input 
+    // If the user wants regular gas, set the price to 0.71
     if(gasType == 'R')
         gasPrice = 0.71;
+    // If the user wants plus gas, set the price to 0.84
     else if (gasType == 'P')
         gasPrice = 0.84;
+    // If the user wants supreme gas, set the price to 0.92
     else if (gasType == 'S')
         gasPrice = 0.92;
 
-    // Error out if the input was bad
+    // If the user enetered bad input, error out of the program
     else{
         cout << "Error: We don't have that poison" << endl;
         return 1;
@@ -64,8 +75,9 @@ int main(){
     if(gallonsPurchased > 10 && gasType == 'S')
         gasPrice -= GASREDUCTION;
 
-    // Prompt for a carwash and read and sanitize input 
-    cout << "Would you like to purchase a carwash....(y/n)?" << endl;    cin >> input; input = toupper(input);
+    // Prompt for a carwash, read and sanitize input 
+    cout << "Would you like to purchase a carwash....(y/n)?" << endl;    
+    cin >> input; input = toupper(input);
 
     // If the user wants a carwash
     if(input == 'Y'){
@@ -82,15 +94,17 @@ int main(){
         // If they want shining diamond, set the cost
         if(input == 'D')
            washCost = 7.00;
-        // Otherwise set the cose for star platinum
+        // Otherwise set the cost for star platinum and set the flag to true 
         else{
            washCost = 12.00;
            platinum = true;
         }
     }
 
+    // The gas cost is the gas price times the number of gallons purchased
     gasCost = gasPrice * gallonsPurchased;
 
+    // If they purchased star platinum, apply the discount 
     if(platinum)
         gasCost = gasCost - (gasCost * CARWASHDISCOUNT);
 
@@ -102,6 +116,7 @@ int main(){
          << left << setw(L) << "Gas Type:" << " "
          << right << setw(R);
 
+    // Select the correct gas type to output to the screen
     if(gasType == 'R')
         cout << "Regular" << endl;
     else if (gasType == 'P')
@@ -109,19 +124,25 @@ int main(){
     else if (gasType == 'S')
         cout << "Supreme" << endl;
 
+    // Output stuff to the screen
     cout << left << setw(L) << "Gallons Purchased:" << " "
          << right << setw(R) << gallonsPurchased << endl
          << left << setw(L) << "Gas Price:" << "$"
          << right << setw(R) << gasPrice << "/gal" << endl << endl
          << left << setw(L) << "Gas Cost:" << "$"
-         << right << setw(R) << gasCost << endl
-         << left << setw(L) << "Car Wash Cost:" << "$"
-         << right << setw(R) << washCost << endl;
+         << right << setw(R) << gasCost << endl;
 
-    if(platinum){
+    // If they purchased a carwash, show the cost of it 
+    if(washCost != 0.0)
+        cout << left << setw(L) << "Car Wash Cost:" << "$"
+             << right << setw(R) << washCost << endl;
+
+    // If they purchased star platinum, show their savings
+    if(platinum)
         cout << left << setw(L) << "Platinum Savings:" << "$"
-         << right << setw(R) << gasCost * CARWASHDISCOUNT << endl;
-    }
+             << right << setw(R) << gasCost * CARWASHDISCOUNT << endl;
+
+    // Display the total cost
     cout << left  << setw(L) << "Total Cost:" << "$"
          << right << setw(R) << gasCost + washCost << endl;
 
