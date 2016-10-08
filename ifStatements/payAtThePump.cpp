@@ -12,7 +12,6 @@
  ** The gas station offers two car washes: Shining Diamond - $7.00 | Star Platinum - $12.00
  ** If Star Platinum is purchased, a 15% discount is applied to the gas cost 
  ** If more than 10 gallons of supreme gas is purchased, reduce the rate of gas by $0.07/gal
- *
  */
 #include <iostream>
 #include <iomanip>
@@ -45,7 +44,9 @@ int main(){
          << "Welcome to Jojo's Bizzare Car Wash" << endl
          << setw(L+R+1) << setfill('~') << "~" << endl
          << "Pick your poison: " << endl
-         << "    R - Regular\n    P - Plus\n    S - Supreme\n"
+         << "    R - Regular: $0.71/gal" << endl
+         << "    P - Plus:    $0.84/gal" << endl
+         << "    S - Supreme: $0.92/gal" << endl
          << setw(L+R+1) << setfill('~') << "~" << endl;
 
     // Read in gas type and sanitize input 
@@ -64,7 +65,7 @@ int main(){
 
     // If the user enetered bad input, error out of the program
     else{
-        cout << "Error: We don't have that poison" << endl;
+        cout << "Error: We don't have that poison!" << endl;
         return 1;
     }
 
@@ -75,6 +76,10 @@ int main(){
     if(gallonsPurchased > 10 && gasType == 'S')
         gasPrice -= GASREDUCTION;
 
+    // NOTE: gasPrice -= GASREDUCTION is the same as gasPrice = gasPrice - GASREDUCTION
+    //       The same works for +, *, %, /, and other matematical operators
+
+        
     // Prompt for a carwash, read and sanitize input 
     cout << "Would you like to purchase a carwash....(y/n)?" << endl;    
     cin >> input; input = toupper(input);
@@ -85,7 +90,8 @@ int main(){
         // Prompt for the car wash type 
         cout << setw(L+R+1) << setfill('~') << "~" << endl
              << "Pick your level of cleanliness: " << endl
-             << "    D - Shining Diamond\n    P - Star Platinum\n" << endl  
+             << "    D - Shining Diamond: $7.00" << endl
+             << "    P - Star Platinum:   $12.00" << endl
              << setw(L+R+1) << setfill('~') << "~" << endl;  
              
         // Read and sanitize 
@@ -95,9 +101,13 @@ int main(){
         if(input == 'D')
            washCost = 7.00;
         // Otherwise set the cost for star platinum and set the flag to true 
-        else{
+        else if(input == 'P'){
            washCost = 12.00;
            platinum = true;
+        }
+        else{
+            cout << "Error: We don't have that cleanliness!" << endl;
+            return 0;
         }
     }
 
