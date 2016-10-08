@@ -1,9 +1,9 @@
 /*
  * Christian Martinez
  * CS 135L - 1006
- * Assignment #0?
+ * Assignment #??
  *
- * This program will demonstrate how to use if statements to control the flow of our program
+ * This program will demonstrate how to use if statements to control the flow of our programs
  *
  * Problem:
  ** Develop the software of a pay at the pump terminal at a gas station
@@ -13,9 +13,9 @@
  ** If Star Platinum is purchased, a 15% discount is applied to the gas cost 
  ** If more than 10 gallons of supreme gas is purchased, reduce the rate of gas by $0.07/gal
  */
-#include <iostream>
-#include <iomanip>
-
+#include <iostream>  // Provides cin/cout
+#include <iomanip>   // Provides setw()
+#include <cctype>    // Provides toupper()
 using namespace std;
 
 int main(){
@@ -117,7 +117,6 @@ int main(){
     // If they purchased star platinum, apply the discount 
     if(platinum)
         gasCost = gasCost - (gasCost * CARWASHDISCOUNT);
-
 
     // Set the precision for dollars 
     cout << endl << endl << fixed << setprecision(2) << setfill(' ')
