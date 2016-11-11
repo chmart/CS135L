@@ -22,6 +22,7 @@
  * -- In order to get the last char of the string a: a[a.length()-1]
  * -- Strings can be used like any other variable, or they can be broken down into invididual chars */
 
+/* PREPROCESSOR DIRECTIVES */
 #include <iostream>     // Provides general I/O
 #include <iomanip>      // Provides setw() and setfill()
 #include <fstream>      // Provides file stream operations
@@ -30,30 +31,19 @@
 
 using namespace std;
 
-// Prints the header row of the table
-void printHeader(ofstream&);
+/* FUNCTION DECLARATIONS */
+void printHeader(ofstream&);              // Prints the header row of the table
+void printRow(ofstream&, string, int&);   // Prints a data row of the table
+void printEnd(ofstream&, int, double);    // Prints the end data
+string makePretty(string);                // Returns a nicely formatted version of the passed string
+bool isPalindrome(string);                // Returns true if the passed string is palindrome, false otherwise
+string reverseString(string);             // Returns a reversed version of the passed string
+string l33t1fy(string);                   // l33t!f!3z 4 s7r!ng n00b
 
-// Prints a data row of the table
-void printRow(ofstream&, string, int&);
+/* GLOBAL VARIABLES */
+const int COL = 15;   // Defines the width of each column in the table 
 
-// Prints the end data
-void printEnd(ofstream&, int, double);
-
-// Returns a nicely formatted version of the passed string
-string makePretty(string);
-
-// Returns true if the passed string is palindrome, false otherwise
-bool isPalindrome(string);
-
-// Returns a reversed version of the passed string
-string reverseString(string);
-
-// l33t!f!3z 4 s7r!ng n00b
-string l33t1fy(string);
-
-const int COL = 15;    // Defines the width of each column in the table 
-
-// Main function
+/* MAIN FUNCTION */
 int main(){
   
   ifstream fin;       // Declare a new input stream
@@ -127,6 +117,8 @@ int main(){
 
   return 0;
 }
+
+/* FUNCTION IMPLEMENTATIONS*/
 
 // Print out the header row of the table
 // Includes squiggly bars and labels for each column
