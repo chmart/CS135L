@@ -1,0 +1,37 @@
+You have inherited a small record label that categorizes and sells music. The previous owners were terribly organized and their data is a mess. You want to write a program that will organize the raw data so that it can be read easily. You also need to add corrections to the music descriptions:
+
+Requirements:
+Prompt user for name of first input file, containing raw music data. The data will consist of an artist name, album name, unique id, release year and price. Open the file and read its contents, storing it into an array of structs, one struct for each album. There will be a maximum of 30 albums to be read.
+
+The names of the artists are properly formatted, but the album names are not, so format them so the first letter is uppercase and the rest are lowercase. Sort the albums by album name and display them to screen.
+
+Prompt user for name of second input file, containing changes that are to be made to album info. The data will begin with an id to determine which album’s info is being modified, this will follow by a one-character command that determines which data is being changed, followed by the change itself.  Apply the changes to your array of structs as you read the changes in.
+
+Command codes:
+     P – change in album price
+     Y – change in album release year
+
+If the id does not match any of the albums in the array, skip the entire line of input 
+
+After all the changes have been applied, display the updated albums
+
+Struct Description:
+•	artist name and album name (strings)
+•	unique ID and release year (int)
+•	price (double)
+
+Sample input files:
+First file:
+X&G aNOmalies 42 1976 9.99
+Shpongle sHpONGled? 1998 12 14.99
+Radiohead bENds 87 1995 12.99
+Rammstein ronSENROT 666 2005 12.99
+Tchami proPHECY 32 2016 12.99
+Babymetal BABYmeTAL 19 2015 49.99
+
+Second file:
+
+32 P 2.99
+42 Y 2016
+1 this whole line is useless because 1 is not an ID in the set of albums
+19 P 12.99
